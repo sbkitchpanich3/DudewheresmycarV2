@@ -43,6 +43,14 @@
 
         <activity android:name=".MapsActivity"
             android:theme="@style/AppTheme" />
+
+        <activity android:name=".MainScreen"
+            android:theme="@style/AppTheme" />
+
+        <activity android:name=".MemoScreen"
+            android:theme="@style/AppTheme" />
     </application>
+
+
 
 </manifest>

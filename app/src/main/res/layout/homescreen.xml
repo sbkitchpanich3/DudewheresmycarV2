@@ -12,18 +12,13 @@
         android:layout_centerHorizontal="true"
         android:onClick="saveAndGo"/>
 
-    <TextView
-        android:layout_width="fill_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="COORDINATES"
-        android:id="@+id/textView"
-        android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:background="#000000"
-        android:textColor="#ffffff"
-        />
+        android:text="INTENT TEST"
+        android:id="@+id/button2"
+        android:onClick="intentTest"/>
+
 
 
 </RelativeLayout>

@@ -31,18 +31,9 @@ public class HomeScreen extends AppCompatActivity {
         setContentView(R.layout.homescreen);
 
         button = (Button) findViewById(R.id.button);
-        textView = (TextView) findViewById(R.id.textView);
 
 
 
-    }
-
-    public void saveLocation(View view) {
-        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        longitude = location.getLongitude();
-        latitude = location.getLatitude();
-        textView.append("\n " + longitude + " " + latitude);
     }
 
     public void saveAndGo(View view) {
@@ -62,6 +53,12 @@ public class HomeScreen extends AppCompatActivity {
         Intent go = new Intent(this, MapsActivity.class);
         go.putExtra("longitude", longitude);
         go.putExtra("latitude", latitude);
+        startActivity(go);
+        finish();
+    }
+
+    public void intentTest(View view) {
+        Intent go = new Intent(this, MainScreen.class);
         startActivity(go);
         finish();
     }

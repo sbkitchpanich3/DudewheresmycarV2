@@ -5,4 +5,29 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.banksters.dudewheresmycarv2.MapsActivity" />
+    tools:context="com.example.banksters.dudewheresmycarv2.MapsActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:text="Compass"
+        android:padding="10dp"
+        android:layout_marginTop="40dp"
+        android:paddingRight="10dp"
+        android:id="@+id/btnCompass"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:layout_below="@id/btnCompass"
+        android:text="Memos"
+        android:padding="10dp"
+        android:layout_marginTop="70dp"
+        android:paddingRight="10dp"
+        android:id="@+id/btnMemos"
+        android:onClick="goMemos"/>
+
+
+</fragment>

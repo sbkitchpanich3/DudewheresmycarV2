@@ -1,7 +1,10 @@
 package com.example.banksters.dudewheresmycarv2;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -13,6 +16,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Double latitude;
+    private Double longitude;
+
+    private Toast toast;
+    private long lastBackPressTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,27 +30,61 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+            latitude = getIntent().getExtras().getDouble("latitude");
+            longitude = getIntent().getExtras().getDouble("longitude");
     }
 
+    /*@Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putDouble("latitude", latitude);
+        outState.putDouble("longitude", longitude);
+    }*/
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+    /*@Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        latitude = savedInstanceState.getDouble("latitude");
+        longitude = savedInstanceState.getDouble("longitude");
+    }*/
+
+    //Test if you can save a location, drive somewhere else, switch to compass, then bring it back to map
+    //Figure out a way to switch between activities without having to start a new one
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(getIntent().getExtras().getDouble("latitude"), getIntent().getExtras().getDouble("longitude"));
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Your Location"));
-        mMap.setMinZoomPreference(18.0f);
+        LatLng pos = new LatLng(latitude, longitude);
+        mMap.addMarker(new MarkerOptions().position(pos).title("Your Location"));
+        mMap.setMinZoomPreference(16.0f);
         mMap.setMaxZoomPreference(20.0f);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.setMyLocationEnabled(true);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(pos));
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (this.lastBackPressTime < System.currentTimeMillis() - 4000) {
+            toast = Toast.makeText(this, "Press back again to close this app", Toast.LENGTH_SHORT);
+            toast.show();
+            this.lastBackPressTime = System.currentTimeMillis();
+        } else {
+            if (toast != null) {
+                toast.cancel();
+            }
+            super.onBackPressed();
+        }
+    }
+
+    public void goMemos (View view) {
+        Intent go = new Intent(this, MemoScreen.class);
+        go.putExtra("longitude", longitude);
+        go.putExtra("latitude", latitude);
+        startActivity(go);
+        //finish();
     }
 }
