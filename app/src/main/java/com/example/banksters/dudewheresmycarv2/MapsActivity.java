@@ -87,4 +87,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         startActivity(go);
         //finish();
     }
+
+    public void goCompass (View view) {
+        Intent go = new Intent(this, CompassScreen.class);
+        go.putExtra("longitude", longitude);
+        go.putExtra("latitude", latitude);
+        startActivity(go);
+        //finish();
+    }
 }

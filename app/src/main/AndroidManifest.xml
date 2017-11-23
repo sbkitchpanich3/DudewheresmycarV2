@@ -49,6 +49,9 @@
 
         <activity android:name=".MemoScreen"
             android:theme="@style/AppTheme" />
+
+        <activity android:name=".CompassScreen"
+            android:theme="@style/AppTheme" />
     </application>
 
 
