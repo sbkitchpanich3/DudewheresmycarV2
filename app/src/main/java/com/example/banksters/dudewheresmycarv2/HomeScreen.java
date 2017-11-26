@@ -33,8 +33,8 @@ public class HomeScreen extends AppCompatActivity {
         button = (Button) findViewById(R.id.button);
 
 
-
     }
+
 
     public void saveAndGo(View view) {
         /*LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);

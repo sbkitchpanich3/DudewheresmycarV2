@@ -18,6 +18,8 @@ public class MemoScreen extends AppCompatActivity{
     private Double longitude;
     EditText memo_edittext;
     String memo;
+    private long lastBackPressTime = 0;
+    private Toast toast;
     //Button savememo_button, clearmemo_button;
 
 //TODO: Maybe send back and forth the textedit shit??
@@ -62,6 +64,20 @@ public class MemoScreen extends AppCompatActivity{
         SharedPreferences.Editor editor = pref.edit();
         editor.clear();
         editor.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (this.lastBackPressTime < System.currentTimeMillis() - 4000) {
+            toast = Toast.makeText(this, "Press back again to close this app", Toast.LENGTH_SHORT);
+            toast.show();
+            this.lastBackPressTime = System.currentTimeMillis();
+        } else {
+            if (toast != null) {
+                toast.cancel();
+            }
+            super.onBackPressed();
+        }
     }
 
     public void saveMemo(View view)

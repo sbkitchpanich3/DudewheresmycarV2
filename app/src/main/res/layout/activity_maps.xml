@@ -30,5 +30,17 @@
         android:id="@+id/btnMemos"
         android:onClick="goMemos"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:layout_below="@id/btnCompass"
+        android:text="Camera"
+        android:padding="10dp"
+        android:layout_marginTop="100dp"
+        android:paddingRight="10dp"
+        android:id="@+id/btnCamera"
+        android:onClick="goCamera"/>
+
 
 </fragment>

@@ -95,4 +95,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         startActivity(go);
         //finish();
     }
+
+    public void goCamera (View view) {
+        Intent go = new Intent(this, CameraScreen.class);
+        go.putExtra("longitude", longitude);
+        go.putExtra("latitude", latitude);
+        startActivity(go);
+        //finish();
+    }
 }
